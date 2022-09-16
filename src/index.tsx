@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 import App from 'components/App';
+import Home from 'pages/Home';
 import { createRoot } from 'react-dom/client';
-=======
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "components/App";
-import Home from "pages/Home";
-import { createRoot } from "react-dom/client";
->>>>>>> main
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
