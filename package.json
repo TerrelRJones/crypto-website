@@ -1,0 +1,29 @@
+{
+  "name": "ui-challenge",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "yarn start",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "repository": "git@bitbucket.org:jeric614/ui-challenge.git",
+  "author": "Jeric Hernandez <jeric.hernandez@bounteous.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.1",
+    "@babel/cli": "^7.18.10",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "@types/react-dom": "^18.0.6",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.8.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
