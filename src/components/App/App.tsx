@@ -1,6 +1,6 @@
-import * as React from "react";
-import { ChakraProvider, Flex } from "@chakra-ui/react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import * as React from 'react';
+import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 interface AppProps {
   children?: React.ReactNode;

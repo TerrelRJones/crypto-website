@@ -1,3 +1,3 @@
 export enum EndPoints {
-  TRENDING = "search/trending",
+  TRENDING = 'search/trending',
 }
