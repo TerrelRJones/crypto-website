@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 import { client } from 'services/cryptoApi';
 import { TrendingResponse } from 'types/coins';
@@ -12,9 +13,9 @@ const Home = ({}: HomeProps) => {
   );
 
   return (
-    <div>
+    <Box>
       <h1>HOME PAGE</h1>
-    </div>
+    </Box>
   );
 };
 
