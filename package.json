@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"yarn build\" \"yarn start\"",
     "build": "webpack",
-    "start": "webpack serve --open"
+    "start": "webpack serve"
   },
   "repository": "git@bitbucket.org:jeric614/ui-challenge.git",
   "author": "Jeric Hernandez <jeric.hernandez@bounteous.com>",
