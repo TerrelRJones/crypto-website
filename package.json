@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "concurrently \"yarn build\" \"yarn start\"",
     "build": "webpack",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "format": "yarn prettier --write ."
   },
   "repository": "git@bitbucket.org:jeric614/ui-challenge.git",
   "author": "Jeric Hernandez <jeric.hernandez@bounteous.com>",
@@ -20,9 +21,11 @@
     "@babel/core": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
     "@babel/preset-react": "^7.18.6",
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@types/react-dom": "^18.0.6",
     "babel-loader": "^8.2.5",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "2.7.1",
     "ts-loader": "^9.3.1",
     "typescript": "^4.8.3",
     "webpack": "^5.74.0",
