@@ -1,14 +1,14 @@
-import { useQuery } from "react-query";
-import { client } from "services/cryptoApi";
-import { TrendingResponse } from "types/coins";
-import { EndPoints } from "types/endpoints";
+import { useQuery } from 'react-query';
+import { client } from 'services/cryptoApi';
+import { TrendingResponse } from 'types/coins';
+import { EndPoints } from 'types/endpoints';
 
 interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
   const { data } = useQuery<TrendingResponse, Error>(
-    "trending",
-    async () => await client({ endpoint: EndPoints.TRENDING })
+    'trending',
+    async () => await client({ endpoint: EndPoints.TRENDING }),
   );
 
   return (
