@@ -5,7 +5,7 @@ interface ClientProps {
   customConfig?: {};
 }
 
-const client = ({ endpoint, customConfig = {} }: ClientProps) => {
+const client = async ({ endpoint, customConfig = {} }: ClientProps) => {
   const config = {
     method: 'GET',
     ...customConfig,
