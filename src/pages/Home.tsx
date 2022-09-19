@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import GlassCard from 'components/GlassBox';
 import { useQuery } from 'react-query';
 import { client } from 'services/cryptoApi';
 import { TrendingResponse } from 'types/coins';

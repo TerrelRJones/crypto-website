@@ -12,7 +12,4 @@
       "*": ["*", "src/*"]
     }
   },
-  "include": [
-    "./src/setupTest.ts"
-  ],
 }
