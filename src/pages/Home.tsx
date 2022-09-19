@@ -1,15 +1,9 @@
-import { useQuery } from "react-query";
-import { client } from "services/cryptoApi";
-import { TrendingResponse } from "types/coins";
-import { EndPoints } from "types/endpoints";
+import { useCryptoService } from 'hooks/useCryptoService';
 
 interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
-  const { data } = useQuery<TrendingResponse, Error>(
-    "trending",
-    async () => await client({ endpoint: EndPoints.TRENDING })
-  );
+  const { trendingData } = useCryptoService();
 
   return (
     <div>
