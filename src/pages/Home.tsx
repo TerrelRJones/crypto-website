@@ -1,14 +1,21 @@
-import { useCryptoService } from 'hooks/useCryptoService';
+import { Box } from '@chakra-ui/react';
+import { useQuery } from 'react-query';
+import { client } from 'services/cryptoApi';
+import { TrendingResponse } from 'types/coins';
+import { EndPoints } from 'types/endpoints';
 
 interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
-  const { trendingData } = useCryptoService();
+  const { data } = useQuery<TrendingResponse, Error>(
+    'trending',
+    async () => await client({ endpoint: EndPoints.TRENDING }),
+  );
 
   return (
-    <div>
+    <Box>
       <h1>HOME PAGE</h1>
-    </div>
+    </Box>
   );
 };
 
