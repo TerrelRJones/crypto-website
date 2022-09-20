@@ -16,6 +16,5 @@ Primary.args = {
       'https://assets.coingecko.com/coins/images/25057/large/fhD9Xs16_400x400.jpg?1649947000',
     id: 'Sweetcoin',
     symbol: 'SWEAT',
-    price_btc: 0.27574,
   },
 };

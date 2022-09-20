@@ -9,7 +9,6 @@ const Home = ({}: HomeProps) => {
 
   return (
     <Box>
-      <h1>HOME PAGE</h1>
       <CoinGraphGrid data={trendingData} />
     </Box>
   );
