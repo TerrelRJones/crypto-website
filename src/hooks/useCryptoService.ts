@@ -14,7 +14,7 @@ export const useCryptoService = ({ coinName }: UseCryptoServiceProps = {}) => {
   );
 
   const { data: marketData } = useQuery<MarketResponse, Error>(
-    ['market', coinName],
+    coinName && ['market', coinName],
     async () =>
       await client({
         endpoint: `coins/${coinName}/${EndPoints.MARKET_CHART}`,
