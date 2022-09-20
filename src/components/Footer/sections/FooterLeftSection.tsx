@@ -1,5 +1,11 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import FullLogo from 'components/FullLogo';
+import { COLORS } from 'const/colors';
+import {
+  AiFillFacebook,
+  AiFillInstagram,
+  AiFillLinkedin,
+} from 'react-icons/ai';
 
 const FooterLeftSection = () => {
   return (
@@ -8,10 +14,16 @@ const FooterLeftSection = () => {
         <FullLogo />
       </Box>
       <Text>Your best crypto partner</Text>
-      <Flex w={150} justifyContent="space-around" mt={5}>
-        <Box>in</Box>
-        <Box>f</Box>
-        <Box>ig</Box>
+      <Flex w={100} justifyContent="space-between" mt={5}>
+        <Box>
+          <AiFillLinkedin size={20} color={COLORS.ghostWhite} />
+        </Box>
+        <Box>
+          <AiFillFacebook size={20} color={COLORS.ghostWhite} />
+        </Box>
+        <Box>
+          <AiFillInstagram size={20} color={COLORS.ghostWhite} />
+        </Box>
       </Flex>
     </Box>
   );
