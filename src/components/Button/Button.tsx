@@ -32,8 +32,9 @@ export const Button: React.FC<ButtonProps> = ({
       }`}
       padding="10px 15px"
       borderRadius={50}
+      fontWeight="bold"
       color="white "
-      maxW={200} // <--- might need to change
+      minW="150px"
       textAlign="center"
       transition="all .25s ease-in-out"
       _hover={{
