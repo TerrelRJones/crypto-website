@@ -9,7 +9,7 @@ interface FooterProps {}
 export const Footer: React.FC<FooterProps> = () => {
   return (
     <Box marginTop="auto">
-      <Box maxW={1400} color="#fff" m="0 auto">
+      <Box maxW={1400} color="#fff" m="0 auto" mt="40px">
         <Flex justifyContent="space-between">
           <FooterLeftSection />
           <FooterMiddleSection />
