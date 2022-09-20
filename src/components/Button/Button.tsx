@@ -1,0 +1,48 @@
+import { Box } from '@chakra-ui/react';
+import { COLORS } from 'const/colors';
+
+export enum ButtonType {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+}
+
+interface ButtonProps {
+  children: string;
+  buttonType: ButtonType;
+  onClick: () => void;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  buttonType,
+  onClick,
+}) => {
+  return (
+    <Box
+      onClick={onClick}
+      bgColor={
+        ButtonType.PRIMARY.includes(buttonType)
+          ? COLORS.primaryBlue
+          : 'transparent'
+      }
+      border={`2px solid  ${
+        ButtonType.PRIMARY.includes(buttonType)
+          ? COLORS.primaryBlue
+          : COLORS.white
+      }`}
+      padding="10px 15px"
+      borderRadius={50}
+      color="white "
+      maxW={200} // <--- might need to change
+      textAlign="center"
+      transition="all .25s ease-in-out"
+      _hover={{
+        cursor: 'pointer',
+        color: COLORS.primaryBlue,
+        bgColor: COLORS.secondaryGreen,
+        borderColor: COLORS.secondaryGreen,
+      }}>
+      {children}
+    </Box>
+  );
+};
