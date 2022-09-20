@@ -1,6 +1,8 @@
-import { Box, Flex, Link } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
+import Button from 'components/Button';
+import { ButtonType } from 'components/Button/Button';
+import CustomLink from 'components/CustomLink';
 import FullLogo from 'components/FullLogo';
-import { COLORS } from 'const/colors';
 
 interface HeaderProps {}
 
@@ -44,49 +46,23 @@ export const Header: React.FC<HeaderProps> = () => {
           <FullLogo />
         </Box>
 
-        <Flex
-          justifyContent="space-between"
-          color="white"
-          gap="40px"
-          fontSize={20}
-          fontWeight="medium">
+        <Flex justifyContent="space-between" color="white" gap="40px">
           {linkdata.map(({ title, link }: HeaderLinksType) => (
-            <Link
-              href={link}
-              isExternal
-              transition="all .25s ease-in-out"
-              _hover={{
-                cursor: 'poiner',
-                color: COLORS.secondaryGreen,
-              }}>
-              {title}
-            </Link>
+            <CustomLink url={link}>{title}</CustomLink>
           ))}
         </Flex>
 
         <Flex gap={5} alignItems="center">
-          <Box
-            border="2px solid #fff"
-            padding="10px 15px"
-            borderRadius={50}
-            color="white ">
+          <Button
+            buttonType={ButtonType.SECONDARY}
+            onClick={() => console.log('Sign in clilcked')}>
             Sign In
-          </Box>
-          <Box
-            bgColor={COLORS.primaryBlue}
-            border={`2px solid ${COLORS.primaryBlue}`}
-            padding="10px 15px"
-            borderRadius={50}
-            color="white "
-            transition="all .25s ease-in-out"
-            _hover={{
-              cursor: 'pointer',
-              color: COLORS.primaryBlue,
-              bgColor: COLORS.secondaryGreen,
-              borderColor: COLORS.secondaryGreen,
-            }}>
+          </Button>
+          <Button
+            buttonType={ButtonType.PRIMARY}
+            onClick={() => console.log('Get started clilcked')}>
             Get Started
-          </Box>
+          </Button>
         </Flex>
       </Flex>
     </Box>
