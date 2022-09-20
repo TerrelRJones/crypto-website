@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import CoinIcon from 'components/CoinIcon';
 import GlassBox from 'components/GlassBox';
 import { COLORS } from 'const/colors';
+import { useCryptoService } from 'hooks/useCryptoService';
 import { Item } from 'types/coins';
 
 interface CoinGraphCardProps {
@@ -10,16 +10,19 @@ interface CoinGraphCardProps {
 }
 
 export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
-  const { large: icon, id: coinName, symbol, price_btc } = item;
+  const { large: icon, id: coinName, symbol } = item;
+  const { marketData } = useCryptoService({ coinName });
+  const USD_PRICE = marketData?.prices[marketData.prices.length - 1][1]
+    .toString()
+    .substring(0, 7);
 
-  // Graph fetch with points with coin name/id arg
-  // fetch f/% Increase || decrease
+  // calculate f/% Increase || decrease
 
   return (
     <GlassBox
       boxProps={{
         minH: 250,
-        maxW: 400,
+        minW: 400,
         p: 5,
       }}>
       <Flex justifyContent="space-between">
@@ -27,7 +30,7 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
         <Flex marginRight="auto" flexDirection="column">
           <Text color={COLORS.accentBlue}>{coinName}</Text>
           <Text color="whiteAlpha.900" fontSize="3xl" as="b">
-            USD {price_btc}
+            USD {USD_PRICE}
           </Text>
         </Flex>
         <Text color={COLORS.ghostAccentBlue}>{symbol}</Text>

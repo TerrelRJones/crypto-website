@@ -9,8 +9,8 @@ interface CoinGraphGridProps {
 export const CoinGraphGrid = ({ data }: CoinGraphGridProps) => {
   return (
     <Box>
-      {data?.coins.map((coin: Coin) => (
-        <CoinGraphCard {...coin} />
+      {data?.coins.map((coin: Coin, index) => (
+        <CoinGraphCard {...coin} key={index} />
       ))}
     </Box>
   );

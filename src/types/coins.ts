@@ -3,6 +3,12 @@ export interface TrendingResponse {
   exchanges: any[];
 }
 
+export interface MarketResponse {
+  prices: number[][];
+  market_caps: number[][];
+  total_volumes: number[][];
+}
+
 export interface Coin {
   item: Item;
 }
