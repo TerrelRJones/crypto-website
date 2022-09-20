@@ -1,7 +1,7 @@
 import { EndPoints } from 'types/endpoints';
 
 interface ClientProps {
-  endpoint: EndPoints;
+  endpoint: EndPoints | string;
   customConfig?: {};
 }
 

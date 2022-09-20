@@ -1,21 +1,15 @@
 import { Box } from '@chakra-ui/react';
-import GlassCard from 'components/GlassBox';
-import { useQuery } from 'react-query';
-import { client } from 'services/cryptoApi';
-import { TrendingResponse } from 'types/coins';
-import { EndPoints } from 'types/endpoints';
+import CoinGraphGrid from 'components/CoinGraphGrid';
+import { useCryptoService } from 'hooks/useCryptoService';
 
 interface HomeProps {}
 
 const Home = ({}: HomeProps) => {
-  const { data } = useQuery<TrendingResponse, Error>(
-    'trending',
-    async () => await client({ endpoint: EndPoints.TRENDING }),
-  );
+  const { trendingData } = useCryptoService();
 
   return (
     <Box>
-      <h1>HOME PAGE</h1>
+      <CoinGraphGrid data={trendingData} />
     </Box>
   );
 };

@@ -12,7 +12,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Flex bgColor={COLORS.darkBlue} flexDirection="column" minH="100vh">
       <Header />
-      <Flex w="100%" maxW={1400} m="0 auto">
+      <Flex w="100%" maxW={1400} m="0 auto" direction="column">
         {children}
       </Flex>
       <Footer />
