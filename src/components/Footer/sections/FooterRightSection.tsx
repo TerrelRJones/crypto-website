@@ -10,7 +10,7 @@ import { COLORS } from 'const/colors';
 
 const FooterRightSection = () => {
   return (
-    <Box w={400}>
+    <Box>
       <Text fontSize="lg" fontWeight="bold" mb={5}>
         Submit for updates.
       </Text>

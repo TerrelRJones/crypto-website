@@ -1,6 +1,7 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, useMediaQuery } from '@chakra-ui/react';
 import CoinIcon from 'components/CoinIcon';
 import GlassBox from 'components/GlassBox';
+import { BREAKPOINTS } from 'const/breakpoints';
 import { COLORS } from 'const/colors';
 import { useCryptoService } from 'hooks/useCryptoService';
 import { Item } from 'types/coins';
@@ -22,7 +23,6 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
     <GlassBox
       boxProps={{
         minH: 250,
-        minW: 400,
         p: 5,
       }}>
       <Flex justifyContent="space-between">

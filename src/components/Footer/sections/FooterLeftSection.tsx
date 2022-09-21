@@ -10,19 +10,19 @@ import {
 
 const FooterLeftSection = () => {
   return (
-    <Box w={400}>
+    <Box>
       <Box w={150} mb="15px">
         <FullLogo />
       </Box>
       <Text>Your best crypto partner</Text>
       <Flex w={100} justifyContent="space-between" mt={5}>
-        <CustomLink size={20} color={COLORS.ghostWhite} url="#">
+        <CustomLink size={25} color={COLORS.ghostWhite} url="#">
           <AiFillLinkedin />
         </CustomLink>
-        <CustomLink size={20} color={COLORS.ghostWhite} url="#">
+        <CustomLink size={25} color={COLORS.ghostWhite} url="#">
           <AiFillFacebook />
         </CustomLink>
-        <CustomLink size={20} color={COLORS.ghostWhite} url="#">
+        <CustomLink size={25} color={COLORS.ghostWhite} url="#">
           <AiFillInstagram />
         </CustomLink>
       </Flex>

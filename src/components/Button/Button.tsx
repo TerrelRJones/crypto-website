@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import { COLORS } from 'const/colors';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 
 export enum ButtonType {
   PRIMARY = 'primary',
@@ -17,6 +18,8 @@ export const Button: React.FC<ButtonProps> = ({
   buttonType,
   onClick,
 }) => {
+  const { isMobile } = useMobileResponsiveness();
+
   return (
     <Box
       onClick={onClick}
@@ -34,7 +37,7 @@ export const Button: React.FC<ButtonProps> = ({
       borderRadius={50}
       fontWeight="bold"
       color="white "
-      minW="150px"
+      minW={!isMobile && '150px'}
       textAlign="center"
       transition="all .25s ease-in-out"
       _hover={{

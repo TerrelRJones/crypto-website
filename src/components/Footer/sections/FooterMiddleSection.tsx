@@ -5,7 +5,7 @@ import { COLORS } from 'const/colors';
 
 const FooterMiddleSection: React.FC = () => {
   return (
-    <Box w={400}>
+    <Box>
       <Text fontSize="lg" fontWeight="bold" mb={5}>
         Quick Links.
       </Text>
