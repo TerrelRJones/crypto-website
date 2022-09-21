@@ -1,11 +1,10 @@
-import * as React from 'react';
 import { Link } from '@chakra-ui/react';
 import { COLORS } from 'const/colors';
 
 interface LinkProps {
-  children: string;
+  children: React.ReactNode;
   url: string;
-  size: number;
+  size?: number;
   color?: string;
 }
 
