@@ -2,10 +2,8 @@ import { Flex, Text } from '@chakra-ui/react';
 import CoinIcon from 'components/CoinIcon';
 import GlassBox from 'components/GlassBox';
 import MarketGraph from 'components/MarketGraph';
-import { LineChartComponent } from 'components/MarketGraph/LineChart';
 import { COLORS } from 'const/colors';
 import { useCryptoService } from 'hooks/useCryptoService';
-import { mockTrendingPrices } from 'mocks/trending';
 import { Item } from 'types/coins';
 
 interface CoinGraphCardProps {
@@ -19,8 +17,6 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
     .toString()
     .substring(0, 7);
   // calculate f/% Increase || decrease
-
-  console.log();
 
   return (
     <GlassBox
@@ -39,7 +35,7 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
         </Flex>
         <Text color={COLORS.ghostAccentBlue}>{symbol}</Text>
       </Flex>
-      <LineChartComponent prices={marketData?.prices} />
+      <MarketGraph prices={marketData?.prices} />
     </GlassBox>
   );
 };
