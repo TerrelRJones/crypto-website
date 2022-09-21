@@ -17,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Header />
       <Flex
         maxW={1400}
+        w="100%"
         m="0 auto"
         direction="column"
         padding={getPadding('0 16px')}>
