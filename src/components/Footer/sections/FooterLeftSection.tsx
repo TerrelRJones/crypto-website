@@ -10,7 +10,7 @@ import {
 
 const FooterLeftSection = () => {
   return (
-    <Box w={400}>
+    <Box>
       <Box w={150} mb="15px">
         <FullLogo />
       </Box>

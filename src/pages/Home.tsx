@@ -7,7 +7,11 @@ interface HomeProps {}
 const Home = ({}: HomeProps) => {
   const { trendingData } = useCryptoService();
 
-  return <Box>{/* <CoinGraphGrid data={trendingData} /> */}</Box>;
+  return (
+    <Box>
+      <CoinGraphGrid data={trendingData} />
+    </Box>
+  );
 };
 
 export default Home;
