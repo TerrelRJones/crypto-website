@@ -3,11 +3,11 @@ import { client } from 'services/cryptoApi';
 import { MarketResponse, TrendingResponse } from 'types/coins';
 import { EndPoints } from 'types/endpoints';
 
-interface UseCryptoServiceProps {
+interface UseCryptoServiceOpts {
   coinName?: string;
 }
 
-export const useCryptoService = ({ coinName }: UseCryptoServiceProps = {}) => {
+export const useCryptoService = ({ coinName }: UseCryptoServiceOpts = {}) => {
   const { data: trendingData } = useQuery<TrendingResponse, Error>(
     'trending',
     async () => await client({ endpoint: EndPoints.TRENDING }),
