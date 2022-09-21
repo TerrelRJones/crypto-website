@@ -10,7 +10,13 @@ const Home = ({}: HomeProps) => {
 
   return (
     <Box>
-      <Hero />
+      <Hero
+        button
+        header="A trusted and secure cryptocurrency exchange."
+        buttonTitle="Get Started">
+        Your guide to the world of an open financial system. Get started with
+        the easiest and most secure platform to buy and trade cryptocurrency.
+      </Hero>
       <CoinGraphGrid data={trendingData} />
     </Box>
   );
