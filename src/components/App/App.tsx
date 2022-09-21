@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import Layout from 'components/Layout';
 import { QueryClient, QueryClientProvider } from 'react-query';
 

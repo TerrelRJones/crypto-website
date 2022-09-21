@@ -1,3 +1,4 @@
+import { HeaderLinksType, linkdata } from './mockHeaderLinkData';
 import { Box, Flex } from '@chakra-ui/react';
 import Button from 'components/Button';
 import { ButtonType } from 'components/Button/Button';
@@ -6,34 +7,9 @@ import FullLogo from 'components/FullLogo';
 
 interface HeaderProps {}
 
-type HeaderLinksType = { title: string; link: string };
-
-const linkdata: HeaderLinksType[] = [
-  {
-    title: 'Exchange',
-    link: '#',
-  },
-  {
-    title: 'Pricing',
-    link: '#',
-  },
-  {
-    title: 'Wallet',
-    link: '#',
-  },
-  {
-    title: 'Company',
-    link: '#',
-  },
-  {
-    title: 'Blog',
-    link: '#',
-  },
-];
-
 export const Header: React.FC<HeaderProps> = () => {
   return (
-    <Box h="80px">
+    <Box h="80px" mb={15}>
       <Flex
         maxW={1400}
         margin="0 auto"
@@ -47,8 +23,10 @@ export const Header: React.FC<HeaderProps> = () => {
         </Box>
 
         <Flex justifyContent="space-between" color="white" gap="40px">
-          {linkdata.map(({ title, link }: HeaderLinksType) => (
-            <CustomLink url={link}>{title}</CustomLink>
+          {linkdata.map(({ id, title, link }: HeaderLinksType) => (
+            <CustomLink key={id} size={20} url={link}>
+              {title}
+            </CustomLink>
           ))}
         </Flex>
 
