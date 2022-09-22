@@ -4,10 +4,12 @@ export interface TrendingResponse {
 }
 
 export interface MarketResponse {
-  prices: number[][];
+  prices: [number, number][];
   market_caps: number[][];
   total_volumes: number[][];
 }
+
+export type PriceResponse = MarketResponse['prices'];
 
 export interface Coin {
   item: Item;
