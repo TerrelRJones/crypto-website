@@ -146,8 +146,7 @@ interface MarketGraphProps {
 
 export const MarketGraph = ({ prices }: MarketGraphProps) => {
   if (!prices) return;
-  const { color, twentyFourHourPercentageChange } =
-    useGraphCalculations(prices);
+  const { color, sevenDayPercentageChange } = useGraphCalculations(prices);
   const ref = useRef(null);
 
   const graph = LineChart(prices, {
@@ -177,7 +176,7 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
             <TriangleDownIcon color={color} pr={1} />
           )}
           <Text fontSize={24} fontWeight="medium">
-            {twentyFourHourPercentageChange}%
+            {sevenDayPercentageChange}%
           </Text>
         </Box>
       </Box>
