@@ -4,6 +4,7 @@ import GlassBox from 'components/GlassBox';
 import MarketGraph from 'components/MarketGraph';
 import { COLORS } from 'const/colors';
 import { useCryptoService } from 'hooks/useCryptoService';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 import { Item } from 'types/coins';
 import { capitalizeFirstLetter } from 'utils/capitalizeFirst';
 
@@ -14,6 +15,7 @@ interface CoinGraphCardProps {
 export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
   const { large: icon, id: coinName, symbol } = item;
   const { marketData } = useCryptoService({ coinName });
+  const { isMobile } = useMobileResponsiveness();
   const CURRENT_USD_PRICE = marketData?.prices[marketData.prices.length - 1][1]
     .toString()
     .substring(0, 7);
@@ -30,13 +32,13 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
           <Text color={COLORS.accentBlue} fontSize={20}>
             {capitalizeFirstLetter(coinName)}
           </Text>
-          <Text color="whiteAlpha.900" fontSize="4xl" as="b">
+          <Text color="whiteAlpha.900" fontSize={isMobile ? 'larger' : '3xl'} as="b">
             USD {CURRENT_USD_PRICE}
           </Text>
         </Flex>
         <Text color={COLORS.ghostAccentBlue}>{symbol}</Text>
       </Flex>
-      <MarketGraph prices={marketData?.prices} />
+      {marketData && <MarketGraph prices={marketData.prices} />}
     </GlassBox>
   );
 };

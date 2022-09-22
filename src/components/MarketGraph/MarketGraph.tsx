@@ -4,6 +4,7 @@ import { Box, Text } from '@chakra-ui/react';
 import { COLORS } from 'const/colors';
 import * as d3 from 'd3';
 import { useGraphCalculations } from 'hooks/useGraphCalculations';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 import { PriceResponse } from 'types/coins';
 
 interface LineChartArgs {
@@ -100,32 +101,34 @@ export const LineChart = (
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height]);
 
-  svg
-    .append('g')
-    .attr('transform', `translate(0,${height - marginBottom})`)
-    .call(xAxis);
+  //Chart Lines leave for accessibility?
 
-  svg
-    .append('g')
-    .attr('transform', `translate(${marginLeft},0)`)
-    .call(yAxis)
-    .call(g => g.select('.domain').remove())
-    .call(g =>
-      g
-        .selectAll('.tick line')
-        .clone()
-        .attr('x2', width - marginLeft - marginRight)
-        .attr('stroke-opacity', 0.1),
-    )
-    .call(g =>
-      g
-        .append('text')
-        .attr('x', -marginLeft)
-        .attr('y', 10)
-        .attr('fill', 'currentColor')
-        .attr('text-anchor', 'start')
-        .text(yLabel),
-    );
+  // svg
+  //   .append('g')
+  //   .attr('transform', `translate(0,${height - marginBottom})`)
+  //   .call(xAxis);
+
+  // svg
+  //   .append('g')
+  //   .attr('transform', `translate(${marginLeft},0)`)
+  //   .call(yAxis)
+  //   .call(g => g.select('.domain').remove())
+  //   .call(g =>
+  //     g
+  //       .selectAll('.tick line')
+  //       .clone()
+  //       .attr('x2', width - marginLeft - marginRight)
+  //       .attr('stroke-opacity', 0.1),
+  //   )
+  //   .call(g =>
+  //     g
+  //       .append('text')
+  //       .attr('x', -marginLeft)
+  //       .attr('y', 10)
+  //       .attr('fill', 'currentColor')
+  //       .attr('text-anchor', 'start')
+  //       .text(yLabel),
+  //   );
 
   svg
     .append('path')
@@ -145,21 +148,25 @@ interface MarketGraphProps {
 }
 
 export const MarketGraph = ({ prices }: MarketGraphProps) => {
-  if (!prices) return;
   const { color, sevenDayPercentageChange } = useGraphCalculations(prices);
+  const { isMobile } = useMobileResponsiveness();
+
   const ref = useRef(null);
 
   const graph = LineChart(prices, {
     x: d => d[0],
     y: d => d[1],
     yLabel: '↑ Daily close ($)',
-    width: 300,
+    width: 275,
     height: 150,
     color: color,
   });
+
   useEffect(() => {
-    if (ref.current && prices) ref.current.appendChild(graph);
-  }, []);
+    if (ref.current) {
+      ref.current.appendChild(graph);
+    }
+  }, [prices]);
 
   return (
     <Box
@@ -167,7 +174,7 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
       height="auto"
       display="flex"
       justifyContent="space-between">
-      <div ref={ref}></div>
+      <Box ref={ref} marginLeft={isMobile ? -45 : undefined}></Box>
       <Box height="100%" marginTop="auto">
         <Box color={color} height="100%" display="flex" alignItems="center">
           {color === COLORS.neonGreen ? (
