@@ -10,7 +10,7 @@ interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { getPadding } = useMobileResponsiveness();
+  const { isTablet } = useMobileResponsiveness();
 
   return (
     <Flex bgColor={COLORS.darkBlue} flexDirection="column" minH="100vh">
@@ -20,7 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         w="100%"
         m="0 auto"
         direction="column"
-        padding={getPadding('0 16px')}>
+        padding={isTablet && '0 16px'}>
         {children}
       </Flex>
       <Footer />
