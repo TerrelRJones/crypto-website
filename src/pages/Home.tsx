@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react';
 import CoinGraphGrid from 'components/CoinGraphGrid';
+import Hero from 'components/Hero';
 import { useCryptoService } from 'hooks/useCryptoService';
 
 interface HomeProps {}
@@ -9,6 +10,13 @@ const Home = ({}: HomeProps) => {
 
   return (
     <Box>
+      <Hero
+        button
+        header="A trusted and secure cryptocurrency exchange."
+        buttonTitle="Get Started">
+        Your guide to the world of an open financial system. Get started with
+        the easiest and most secure platform to buy and trade cryptocurrency.
+      </Hero>
       <CoinGraphGrid data={trendingData} />
     </Box>
   );
