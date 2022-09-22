@@ -1,10 +1,14 @@
 import { Divider, Flex, Text } from '@chakra-ui/react';
 import CustomLink from 'components/CustomLink';
 import { COLORS } from 'const/colors';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 
 const FooterBottomSection = () => {
+  const { isMobile } = useMobileResponsiveness();
+
   return (
     <Flex
+      flexDir={isMobile ? 'column' : 'row'}
       margin="0 auto"
       color={COLORS.ghostWhite}
       justifyContent="space-between"

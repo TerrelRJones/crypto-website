@@ -22,7 +22,6 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
     <GlassBox
       boxProps={{
         minH: 250,
-        minW: 400,
         p: 5,
       }}>
       <Flex justifyContent="space-between">
