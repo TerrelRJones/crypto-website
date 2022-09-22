@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { Box } from '@chakra-ui/react';
 import * as d3 from 'd3';
-import { PriceResponse } from 'mocks/trending';
+import { PriceResponse } from 'types/coins';
 
 interface LineChartArgs {
   x?: ([]) => number;
   y?: ([]) => number;
-  defined?: any;
+  defined?: (item: number[], index: number, arr: number[][]) => boolean;
   curve?: d3.CurveFactory;
   marginTop?: number;
   marginRight?: number;
@@ -34,7 +34,7 @@ export const LineChart = (
   {
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
-    defined, // for gaps in data
+    defined = (d, i) => !isNaN(d[0]) && !isNaN(d[1]), // for gaps in data
     curve = d3.curveLinear, // method of interpolation between points
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
@@ -60,14 +60,15 @@ export const LineChart = (
   // Compute values.
   const X = d3.map(data, x);
   const Y = d3.map(data, y);
-  const I: any = d3.range(X.length);
-  if (defined === undefined)
-    defined = (d: any, i: any) => !isNaN(X[i]) && !isNaN(Y[i]);
-  const D = d3.map(data, defined);
+  // const I: any = d3.range(X.length);
+
+  // yDomain
+  // clamp at 0
+  // scale at a percentage to account for wide varying in currency values
 
   // Compute default domains.
   if (xDomain === undefined) xDomain = d3.extent(X);
-  if (yDomain === undefined) yDomain = [0, d3.max(Y)];
+  if (yDomain === undefined) yDomain = [d3.min(Y), d3.max(Y)];
 
   // Construct scales and axes.
   const xScale = xType(xDomain, xRange);
@@ -81,15 +82,13 @@ export const LineChart = (
   // Construct a line generator.
   const line = d3
     .line()
-    .defined((i: any) => {
-      return D[i] as any;
-    })
+    .defined(defined)
     .curve(d3.curveBasis)
-    .x((i: any) => {
-      return xScale(X[i]);
+    .x(d => {
+      return xScale(d[0]);
     })
-    .y((i: any) => {
-      return yScale(Y[i]);
+    .y(d => {
+      return yScale(d[1]);
     });
 
   const svg = d3
@@ -97,7 +96,6 @@ export const LineChart = (
     .attr('width', width)
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height]);
-  // .attr('style', 'max-width: 100%; height: auto; height: intrinsic;');
 
   svg
     .append('g')
@@ -134,13 +132,13 @@ export const LineChart = (
     .attr('stroke-linecap', strokeLinecap)
     .attr('stroke-linejoin', strokeLinejoin)
     .attr('stroke-opacity', strokeOpacity)
-    .attr('d', line(I));
+    .attr('d', line(data));
 
   return svg.node();
 };
 
 interface MarketGraphProps {
-  prices: any;
+  prices: PriceResponse;
 }
 
 export const MarketGraph = ({ prices }: MarketGraphProps) => {
@@ -148,13 +146,22 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
 
   const ref = useRef(null);
 
+  const calculateColor = (prices: [number, number][]) => {
+    if (prices[0][1] > prices[prices.length - 1][1]) {
+      return '#ff1818';
+    }
+    return '#39ff14';
+  };
+
+  calculateColor(prices);
+
   const graph = LineChart(prices, {
     x: d => d[0],
     y: d => d[1],
     yLabel: '↑ Daily close ($)',
     width: 300,
     height: 150,
-    color: '#39ff14',
+    color: calculateColor(prices),
   });
   useEffect(() => {
     if (ref.current && prices) ref.current.appendChild(graph);

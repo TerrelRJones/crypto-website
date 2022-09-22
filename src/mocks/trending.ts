@@ -1,7 +1,7 @@
-export type PriceResponse = Array<[number, number]>;
+import { PriceResponse } from 'types/coins';
 
 export const mockTrendingPrices: PriceResponse = [
-  [1663200000000, 3.597944433478062],
+  [1663200000000, 3.597944433478062], //UTC time
   [1663286400000, 3.340072820809393],
   [1663372800000, 3.3357992687426035],
   [1663459200000, 3.522801538847422],
