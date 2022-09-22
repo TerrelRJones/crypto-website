@@ -1,7 +1,6 @@
-import { Flex, Text, useMediaQuery } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import CoinIcon from 'components/CoinIcon';
 import GlassBox from 'components/GlassBox';
-import { BREAKPOINTS } from 'const/breakpoints';
 import { COLORS } from 'const/colors';
 import { useCryptoService } from 'hooks/useCryptoService';
 import { Item } from 'types/coins';

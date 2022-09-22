@@ -1,6 +1,7 @@
-import { Grid, useMediaQuery } from '@chakra-ui/react';
+import { Grid } from '@chakra-ui/react';
 import CoinGraphCard from 'components/CoinGraphCard';
 import { BREAKPOINTS } from 'const/breakpoints';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 import { Coin, TrendingResponse } from 'types/coins';
 
 interface CoinGraphGridProps {
@@ -8,7 +9,7 @@ interface CoinGraphGridProps {
 }
 
 export const CoinGraphGrid = ({ data }: CoinGraphGridProps) => {
-  const [isTablet] = useMediaQuery(BREAKPOINTS.tablet);
+  const { isTablet } = useMobileResponsiveness();
 
   return (
     <Grid
