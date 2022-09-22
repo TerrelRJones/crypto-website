@@ -5,6 +5,7 @@ import MarketGraph from 'components/MarketGraph';
 import { COLORS } from 'const/colors';
 import { useCryptoService } from 'hooks/useCryptoService';
 import { Item } from 'types/coins';
+import { capitalizeFirstLetter } from 'utils/capitalizeFirst';
 
 interface CoinGraphCardProps {
   item?: Item;
@@ -16,7 +17,6 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
   const CURRENT_USD_PRICE = marketData?.prices[marketData.prices.length - 1][1]
     .toString()
     .substring(0, 7);
-  // calculate f/% Increase || decrease
 
   return (
     <GlassBox
@@ -27,8 +27,10 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
       <Flex justifyContent="space-between">
         <CoinIcon src={icon} spacing={{ marginRight: 5 }} />
         <Flex marginRight="auto" flexDirection="column">
-          <Text color={COLORS.accentBlue}>{coinName}</Text>
-          <Text color="whiteAlpha.900" fontSize="3xl" as="b">
+          <Text color={COLORS.accentBlue} fontSize={20}>
+            {capitalizeFirstLetter(coinName)}
+          </Text>
+          <Text color="whiteAlpha.900" fontSize="4xl" as="b">
             USD {CURRENT_USD_PRICE}
           </Text>
         </Flex>

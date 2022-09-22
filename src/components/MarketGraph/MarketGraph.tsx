@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { Box } from '@chakra-ui/react';
+import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
+import { Box, Text } from '@chakra-ui/react';
+import { COLORS } from 'const/colors';
 import * as d3 from 'd3';
+import { useGraphCalculations } from 'hooks/useGraphCalculations';
 import { PriceResponse } from 'types/coins';
 
 interface LineChartArgs {
@@ -143,17 +146,9 @@ interface MarketGraphProps {
 
 export const MarketGraph = ({ prices }: MarketGraphProps) => {
   if (!prices) return;
-
+  const { color, twentyFourHourPercentageChange } =
+    useGraphCalculations(prices);
   const ref = useRef(null);
-
-  const calculateColor = (prices: [number, number][]) => {
-    if (prices[0][1] > prices[prices.length - 1][1]) {
-      return '#ff1818';
-    }
-    return '#39ff14';
-  };
-
-  calculateColor(prices);
 
   const graph = LineChart(prices, {
     x: d => d[0],
@@ -161,15 +156,31 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
     yLabel: '↑ Daily close ($)',
     width: 300,
     height: 150,
-    color: calculateColor(prices),
+    color: color,
   });
   useEffect(() => {
     if (ref.current && prices) ref.current.appendChild(graph);
   }, []);
 
   return (
-    <Box maxW="100%" height="auto">
+    <Box
+      maxW="100%"
+      height="auto"
+      display="flex"
+      justifyContent="space-between">
       <div ref={ref}></div>
+      <Box height="100%" marginTop="auto">
+        <Box color={color} height="100%" display="flex" alignItems="center">
+          {color === COLORS.neonGreen ? (
+            <TriangleUpIcon color={color} pr={1} />
+          ) : (
+            <TriangleDownIcon color={color} pr={1} />
+          )}
+          <Text fontSize={24} fontWeight="medium">
+            {twentyFourHourPercentageChange}%
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 };
