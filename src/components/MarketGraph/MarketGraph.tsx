@@ -38,7 +38,7 @@ export const LineChart = (
     x = ([x]) => x, // given d in data, returns the (temporal) x-value
     y = ([, y]) => y, // given d in data, returns the (quantitative) y-value
     defined = (d, i) => !isNaN(d[0]) && !isNaN(d[1]), // for gaps in data
-    curve = d3.curveLinear, // method of interpolation between points
+    curve = d3.curveBasis, // method of interpolation between points
     marginTop = 20, // top margin, in pixels
     marginRight = 30, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
@@ -86,7 +86,7 @@ export const LineChart = (
   const line = d3
     .line()
     .defined(defined)
-    .curve(d3.curveBasis)
+    .curve(curve)
     .x(d => {
       return xScale(d[0]);
     })
