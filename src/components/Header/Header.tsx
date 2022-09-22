@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = () => {
         alignItems="center"
         justifyContent="space-between"
         flexWrap="wrap"
-        padding={isTablet && '0 16px'}>
+        padding="0 16px">
         <Box w="200px">
           <FullLogo />
         </Box>

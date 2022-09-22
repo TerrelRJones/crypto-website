@@ -9,7 +9,7 @@ import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = () => {
-  const { isTablet, isDesktop } = useMobileResponsiveness();
+  const { isTablet } = useMobileResponsiveness();
 
   return (
     <Box marginTop="auto">
@@ -18,7 +18,7 @@ export const Footer: React.FC<FooterProps> = () => {
         color={COLORS.white}
         m="0 auto"
         mt="40px"
-        padding={isDesktop && '0 16px'}>
+        padding="0 16px">
         <Flex
           justifyContent="space-between"
           flexDirection={isTablet ? 'column' : 'row'}
