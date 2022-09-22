@@ -8,15 +8,5 @@ export const useMobileResponsiveness = () => {
     BREAKPOINTS.desktop,
   ]);
 
-  const getFlexDir = () => {
-    if (isTablet) return 'column';
-    return 'row';
-  };
-
-  const getPadding = (x: string, y?: string) => {
-    if (isDesktop) return x;
-    return y;
-  };
-
-  return { getFlexDir, getPadding, isMobile, isTablet, isDesktop };
+  return { isMobile, isTablet, isDesktop };
 };
