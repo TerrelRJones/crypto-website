@@ -4,7 +4,7 @@ import { COLORS } from 'const/colors';
 import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 
 const FooterBottomSection = () => {
-  const { getFlexDir, isMobile } = useMobileResponsiveness();
+  const { isMobile } = useMobileResponsiveness();
 
   return (
     <Flex

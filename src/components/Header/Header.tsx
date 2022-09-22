@@ -11,7 +11,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = () => {
-  const { getPadding, isTablet } = useMobileResponsiveness();
+  const { isTablet } = useMobileResponsiveness();
 
   return (
     <Box minH="80px" mt={5} mb={15}>
@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = () => {
         alignItems="center"
         justifyContent="space-between"
         flexWrap="wrap"
-        padding={getPadding('0 16px')}>
+        padding="0 16px">
         <Box w="200px">
           <FullLogo />
         </Box>
