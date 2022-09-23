@@ -2,6 +2,7 @@ import { Flex, Text } from '@chakra-ui/react';
 import CoinIcon from 'components/CoinIcon';
 import GlassBox from 'components/GlassBox';
 import MarketGraph from 'components/MarketGraph';
+import PercentChangeDisplay from 'components/PercentChangeDisplay';
 import { COLORS } from 'const/colors';
 import { useCryptoService } from 'hooks/useCryptoService';
 import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
@@ -26,19 +27,36 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
         minH: 250,
         p: 5,
       }}>
-      <Flex justifyContent="space-between">
-        <CoinIcon src={icon} spacing={{ marginRight: 5 }} />
-        <Flex marginRight="auto" flexDirection="column">
-          <Text color={COLORS.accentBlue} fontSize={20}>
-            {capitalizeFirstLetter(coinName)}
-          </Text>
-          <Text color="whiteAlpha.900" fontSize={isMobile ? 'larger' : '3xl'} as="b">
-            USD {CURRENT_USD_PRICE}
-          </Text>
-        </Flex>
-        <Text color={COLORS.ghostAccentBlue}>{symbol}</Text>
-      </Flex>
-      {marketData && <MarketGraph prices={marketData.prices} />}
+      {marketData && (
+        <>
+          <Flex justifyContent="space-between">
+            <CoinIcon src={icon} spacing={{ marginRight: 5 }} />
+            <Flex marginRight="auto" flexDirection="column">
+              <Text color={COLORS.accentBlue} fontSize={20}>
+                {capitalizeFirstLetter(coinName)}
+              </Text>
+              <Flex justifyContent="space-between">
+                <Text
+                  color="whiteAlpha.900"
+                  fontSize={isMobile ? 'larger' : '3xl'}
+                  as="b">
+                  USD {CURRENT_USD_PRICE}
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex flexDirection="column" alignItems="flex-end">
+              <Text color={COLORS.ghostAccentBlue}>{symbol}</Text>
+              {isMobile && (
+                <PercentChangeDisplay
+                  prices={marketData.prices}
+                  fontSize={16}
+                />
+              )}
+            </Flex>
+          </Flex>
+          <MarketGraph prices={marketData.prices} />
+        </>
+      )}
     </GlassBox>
   );
 };
