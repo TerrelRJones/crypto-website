@@ -166,7 +166,8 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
     if (ref.current) {
       ref.current.appendChild(graph);
     }
-  }, [prices]);
+    return () => (ref.current = null);
+  }, [graph]);
 
   return (
     <Box
