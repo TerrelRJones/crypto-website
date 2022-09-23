@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { Box, Text } from '@chakra-ui/react';
+import PercentChangeDisplay from 'components/PercentChangeDisplay';
 import { COLORS } from 'const/colors';
 import * as d3 from 'd3';
 import { useGraphCalculations } from 'hooks/useGraphCalculations';
@@ -41,9 +42,9 @@ export const LineChart = (
     defined = (d, i) => !isNaN(d[0]) && !isNaN(d[1]), // for gaps in data
     curve = d3.curveBasis, // method of interpolation between points
     marginTop = 20, // top margin, in pixels
-    marginRight = 30, // right margin, in pixels
+    marginRight = 0, // right margin, in pixels
     marginBottom = 30, // bottom margin, in pixels
-    marginLeft = 40, // left margin, in pixels
+    marginLeft = 0, // left margin, in pixels
     width = 640, // outer width, in pixels
     height = 400, // outer height, in pixels
     xType = d3.scaleUtc, // the x-scale type
@@ -52,8 +53,8 @@ export const LineChart = (
     yType = d3.scaleLinear, // the y-scale type
     yDomain, // [ymin, ymax]
     yRange = [height - marginBottom, marginTop], // [bottom, top]
-    yFormat, // a format specifier string for the y-axis
-    yLabel, // a label for the y-axis
+    // yFormat, // a format specifier string for the y-axis
+    // yLabel, // a label for the y-axis
     color = 'currentColor', // stroke color of line
     strokeLinecap = 'round', // stroke line cap of the line
     strokeLinejoin = 'round', // stroke line join of the line
@@ -77,11 +78,6 @@ export const LineChart = (
   // Construct scales and axes.
   const xScale = xType(xDomain, xRange);
   const yScale = yType(yDomain, yRange);
-  const xAxis = d3
-    .axisBottom(xScale)
-    .ticks(width / 80)
-    .tickSizeOuter(0);
-  const yAxis = d3.axisLeft(yScale).ticks(height / 40, yFormat);
 
   // Construct a line generator.
   const line = d3
@@ -101,7 +97,14 @@ export const LineChart = (
     .attr('height', height)
     .attr('viewBox', [0, 0, width, height]);
 
-  //Chart Lines leave for accessibility?
+  /**
+   * START OF GRAPH GRIDLINES && NAME PROPS
+   */
+  // const xAxis = d3
+  //   .axisBottom(xScale)
+  //   .ticks(width / 80)
+  //   .tickSizeOuter(0);
+  // const yAxis = d3.axisLeft(yScale).ticks(height / 40, yFormat);
 
   // svg
   //   .append('g')
@@ -129,6 +132,9 @@ export const LineChart = (
   //       .attr('text-anchor', 'start')
   //       .text(yLabel),
   //   );
+  /**
+   * END OF GRAPH GRIDLINES && NAME PROPS
+   */
 
   svg
     .append('path')
@@ -148,25 +154,26 @@ interface MarketGraphProps {
 }
 
 export const MarketGraph = ({ prices }: MarketGraphProps) => {
-  const { color, sevenDayPercentageChange } = useGraphCalculations(prices);
+  const { color } = useGraphCalculations(prices);
   const { isMobile } = useMobileResponsiveness();
 
   const ref = useRef(null);
 
-  const graph = LineChart(prices, {
-    x: d => d[0],
-    y: d => d[1],
-    yLabel: '↑ Daily close ($)',
-    width: 275,
-    height: 150,
-    color: color,
-  });
+  const graph = useMemo(() => {
+    return LineChart(prices, {
+      x: d => d[0],
+      y: d => d[1],
+      yLabel: '↑ Daily close ($)',
+      width: isMobile ? 225 : 300,
+      height: 150,
+      color: color,
+    });
+  }, [color, isMobile, prices]);
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.appendChild(graph);
-    }
-    return () => (ref.current = null);
+    const cleanup = ref.current.appendChild(graph);
+
+    return () => cleanup.remove(graph);
   }, [graph]);
 
   return (
@@ -174,19 +181,10 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
       maxW="100%"
       height="auto"
       display="flex"
-      justifyContent="space-between">
-      <Box ref={ref} marginLeft={isMobile ? -45 : undefined}></Box>
+      justifyContent={isMobile ? 'center' : 'space-between'}>
+      <Box ref={ref}></Box>
       <Box height="100%" marginTop="auto">
-        <Box color={color} height="100%" display="flex" alignItems="center">
-          {color === COLORS.neonGreen ? (
-            <TriangleUpIcon color={color} pr={1} />
-          ) : (
-            <TriangleDownIcon color={color} pr={1} />
-          )}
-          <Text fontSize={24} fontWeight="medium">
-            {sevenDayPercentageChange}%
-          </Text>
-        </Box>
+        {!isMobile && <PercentChangeDisplay prices={prices} fontSize={24} />}
       </Box>
     </Box>
   );
