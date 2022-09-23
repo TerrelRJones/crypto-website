@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -10,6 +11,7 @@ module.exports = {
       template: './public/index.html',
     }),
     new Dotenv(),
+    new ESLintPlugin(),
   ],
   output: {
     filename: 'main.js',
