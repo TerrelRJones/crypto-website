@@ -10,12 +10,12 @@ export const useGraphCalculations = (prices: [number, number][]) => {
       return COLORS.neonRed;
     }
     return COLORS.neonGreen;
-  }, [prices]);
+  }, [dayOneClose, daySevenClose]);
 
   const sevenDayPercentageChange = useMemo(() => {
     const percentage = ((dayOneClose - daySevenClose) / daySevenClose) * 100;
     return Math.abs(percentage).toString().substring(0, 5);
-  }, [prices]);
+  }, [dayOneClose, daySevenClose]);
 
   return { color, sevenDayPercentageChange };
 };
