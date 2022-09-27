@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
-import { Box, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import PercentChangeDisplay from 'components/PercentChangeDisplay';
-import { COLORS } from 'const/colors';
 import * as d3 from 'd3';
 import { useGraphCalculations } from 'hooks/useGraphCalculations';
 import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
@@ -93,8 +91,8 @@ export const LineChart = (
 
   const svg = d3
     .create('svg')
-    .attr('width', width)
-    .attr('height', height)
+    .attr('width', '100%') // changed from const width
+    .attr('height', '100%') // changed from const height
     .attr('viewBox', [0, 0, width, height]);
 
   /**
@@ -182,7 +180,7 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
       height="auto"
       display="flex"
       justifyContent={isMobile ? 'center' : 'space-between'}>
-      <Box ref={ref}></Box>
+      <Box ref={ref} />
       <Box height="100%" marginTop="auto">
         {!isMobile && <PercentChangeDisplay prices={prices} fontSize={24} />}
       </Box>
