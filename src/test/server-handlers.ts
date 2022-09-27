@@ -1,5 +1,5 @@
 import { mockMarketPrices } from 'mocks/prices';
-import { rest } from 'msw';
+import { rest, setupWorker } from 'msw';
 import { EndPoints } from 'types/endpoints';
 
 export const marketHandler = [
@@ -13,9 +13,11 @@ export const marketHandler = [
 
 export const loadingHandler = [
   rest.get(
-    `${process.env.REACT_APP_CRYPTO_API_URL}/coins/Cosmos/${EndPoints.MARKET_CHART}`,
+    `${process.env.REACT_APP_CRYPTO_API_URL}/coins/sweatcoin/${EndPoints.MARKET_CHART}`,
     (req, res, ctx) => {
       return res(ctx.delay('infinite'));
     },
   ),
 ];
+
+
