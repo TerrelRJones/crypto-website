@@ -18,7 +18,7 @@ export interface Coin {
 export interface Item {
   id: string; //"sweatcoin"
   coin_id: number; //25057
-  name: string; //"Sweatcoin - Sweat Economy"
+  name: string; //"sweatcoin - Sweat Economy"
   symbol: string; //"SWEAT"
   market_cap_rank: number;
   thumb: string; //"https://assets.coingecko.com/coins/images/25057/thumb/fhD9Xs16_400x400.jpg?1649947000"

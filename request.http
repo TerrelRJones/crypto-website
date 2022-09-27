@@ -1,3 +1,5 @@
 ### TRENDING
 GET https://api.coingecko.com/api/v3/search/trending
 
+### MARKET
+GET https://api.coingecko.com/api/v3/coins/sweatcoin/market_chart?vs_currency=usd&days=7&interval=hourly

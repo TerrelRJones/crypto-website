@@ -1,4 +1,5 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Suspense } from 'react';
+import { Flex, Spinner, Text } from '@chakra-ui/react';
 import CoinIcon from 'components/CoinIcon';
 import GlassBox from 'components/GlassBox';
 import MarketGraph from 'components/MarketGraph';
@@ -15,8 +16,9 @@ interface CoinGraphCardProps {
 
 export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
   const { large: icon, id: coinName, symbol } = item;
-  const { marketData } = useCryptoService({ coinName });
+  const { marketData, marketDataIsLoading } = useCryptoService({ coinName });
   const { isMobile } = useMobileResponsiveness();
+
   const CURRENT_USD_PRICE = marketData?.prices[marketData.prices.length - 1][1]
     .toString()
     .substring(0, 7);
@@ -27,7 +29,15 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
         minH: 250,
         p: 5,
       }}>
-      {marketData && (
+      {marketDataIsLoading ? (
+        <Spinner
+          thickness="6px"
+          speed="0.65s"
+          emptyColor={COLORS.secondaryGreen}
+          color={COLORS.primaryBlue}
+          size="xl"
+        />
+      ) : (
         <>
           <Flex justifyContent="space-between">
             <CoinIcon src={icon} spacing={{ marginRight: 5 }} />
