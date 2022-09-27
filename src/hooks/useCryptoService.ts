@@ -13,7 +13,10 @@ export const useCryptoService = ({ coinName }: UseCryptoServiceOpts = {}) => {
     async () => await client({ endpoint: EndPoints.TRENDING }),
   );
 
-  const { data: marketData } = useQuery<MarketResponse, Error>(
+  const { data: marketData, isLoading: marketDataIsLoading } = useQuery<
+    MarketResponse,
+    Error
+  >(
     coinName && ['market', coinName],
     async () =>
       await client({
@@ -24,5 +27,6 @@ export const useCryptoService = ({ coinName }: UseCryptoServiceOpts = {}) => {
   return {
     trendingData,
     marketData,
+    marketDataIsLoading,
   };
 };

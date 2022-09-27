@@ -1,3 +1,9 @@
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+
+initialize({
+  onUnhandledRequest: 'warn',
+});
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -16,3 +22,5 @@ export const parameters = {
     ],
   },
 };
+
+export const decorators = [mswDecorator];
