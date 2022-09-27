@@ -18,6 +18,7 @@ export const CoinGraphCard = ({ item }: CoinGraphCardProps) => {
   const { large: icon, id: coinName, symbol } = item;
   const { marketData, marketDataIsLoading } = useCryptoService({ coinName });
   const { isMobile } = useMobileResponsiveness();
+
   const CURRENT_USD_PRICE = marketData?.prices[marketData.prices.length - 1][1]
     .toString()
     .substring(0, 7);
