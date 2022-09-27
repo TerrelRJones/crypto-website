@@ -1,7 +1,8 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import Button from 'components/Button';
-import { ButtonType } from 'components/Button/Button';
+import { ButtonSize, ButtonType } from 'components/Button/Button';
 import { COLORS } from 'const/colors';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 
 interface HeroProps {
   header: string;
@@ -16,23 +17,30 @@ export const Hero: React.FC<HeroProps> = ({
   buttonTitle,
   button,
 }) => {
+  const { isMobile } = useMobileResponsiveness();
+
   return (
     <Flex
-      minH="600px"
+      mb={10}
       flexDir="column"
       justifyContent="center"
-      alignItems="center">
-      <Box w="60%">
+      alignItems="center"
+      minH={!isMobile && 600}>
+      <Box w={!isMobile && '60%'}>
         <Text
           lineHeight={1}
           textAlign="center"
           color={COLORS.white}
           fontWeight="700"
-          fontSize={60}
-          mb={10}>
+          fontSize={isMobile ? 30 : 60}
+          mb={isMobile ? 5 : 10}>
           {header}
         </Text>
-        <Text color={COLORS.white} textAlign="center" fontSize={20} mb="90px">
+        <Text
+          color={COLORS.white}
+          textAlign="center"
+          fontSize={isMobile ? 16 : 20}
+          mb={isMobile ? '40px' : '90px'}>
           {children}
         </Text>
         {button && (

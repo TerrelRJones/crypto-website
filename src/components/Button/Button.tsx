@@ -7,18 +7,31 @@ export enum ButtonType {
   SECONDARY = 'secondary',
 }
 
+export enum ButtonSize {
+  SMALL = 'small',
+  LARGE = 'large',
+}
+
 interface ButtonProps {
   children: string;
   buttonType: ButtonType;
+  buttonSize?: ButtonSize;
   onClick: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   buttonType,
+  buttonSize,
   onClick,
 }) => {
   const { isMobile } = useMobileResponsiveness();
+
+  const getButtonSize = () => {
+    if (buttonSize === ButtonSize.SMALL) return '5px 15px';
+    if (buttonSize === ButtonSize.LARGE) return '20px 15px';
+    return '10px 15px';
+  };
 
   return (
     <Box
@@ -33,7 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
           ? COLORS.primaryBlue
           : COLORS.white
       }`}
-      padding="10px 15px"
+      padding={getButtonSize()}
       borderRadius={50}
       fontWeight="bold"
       color="white "
