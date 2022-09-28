@@ -175,8 +175,10 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
   }, [graph]);
 
   return (
+
     <Box maxW="100%" height="auto" display="flex">
       <Box ref={ref} flexGrow={2} />
+
       <Box height="100%" marginTop="auto">
         {!isMobile && <PercentChangeDisplay prices={prices} fontSize={24} />}
       </Box>
