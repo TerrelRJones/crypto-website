@@ -60,7 +60,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClick }) => {
               <Button
                 buttonType={ButtonType.SECONDARY}
                 buttonSize={ButtonSize.LARGE}
-                onClick={() => console.log('Sign in clilcked')}>
+                onClick={() => console.log('Sign in clicked')}>
                 Sign In
               </Button>
             </Box>
@@ -68,7 +68,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClick }) => {
               <Button
                 buttonType={ButtonType.PRIMARY}
                 buttonSize={ButtonSize.LARGE}
-                onClick={() => console.log('Get started clilcked')}>
+                onClick={() => console.log('Get started clicked')}>
                 Get Started
               </Button>
             </Box>
