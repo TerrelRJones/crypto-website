@@ -10,7 +10,7 @@ import MobileNav from 'components/MobileNav';
 import { COLORS } from 'const/colors';
 import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 import { useToggle } from 'hooks/useToggle';
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
 
 interface HeaderProps {}
 
@@ -66,12 +66,12 @@ export const Header: React.FC<HeaderProps> = () => {
             <Flex gap={5} alignItems="center">
               <Button
                 buttonType={ButtonType.SECONDARY}
-                onClick={() => console.log('Sign in clilcked')}>
+                onClick={() => console.log('Sign in clicked')}>
                 Sign In
               </Button>
               <Button
                 buttonType={ButtonType.PRIMARY}
-                onClick={() => console.log('Get started clilcked')}>
+                onClick={() => console.log('Get started clicked')}>
                 Get Started
               </Button>
             </Flex>
