@@ -48,6 +48,7 @@ export const Hero: React.FC<HeroProps> = ({
             <Box w="300px">
               <Button
                 buttonType={ButtonType.PRIMARY}
+                buttonSize={ButtonSize.LARGE}
                 onClick={() => console.log('Get started clicked')}>
                 {buttonTitle}
               </Button>
