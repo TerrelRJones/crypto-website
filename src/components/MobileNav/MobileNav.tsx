@@ -1,12 +1,13 @@
 import { Box, Fade, Flex } from '@chakra-ui/react';
 import Button from 'components/Button';
-import { ButtonType } from 'components/Button/Button';
+import { ButtonSize, ButtonType } from 'components/Button/Button';
 import CustomLink from 'components/CustomLink';
 import {
   HeaderLinksType,
   linkdata,
 } from 'components/Header/mockHeaderLinkData';
 import { COLORS } from 'const/colors';
+import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 import { AiOutlineClose } from 'react-icons/ai';
 
 interface MobileNavProps {
@@ -15,8 +16,9 @@ interface MobileNavProps {
 }
 
 export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClick }) => {
+  const { isMobile } = useMobileResponsiveness();
   return (
-    <Fade in={isOpen}>
+    <Fade in={isOpen} style={{ zIndex: 900 }}>
       <Box
         position="fixed"
         zIndex="100"
@@ -49,17 +51,27 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClick }) => {
             </Flex>
           </Box>
 
-          <Flex flexDirection="column" gap={5} padding="0 16px">
-            <Button
-              buttonType={ButtonType.SECONDARY}
-              onClick={() => console.log('Sign in clilcked')}>
-              Sign In
-            </Button>
-            <Button
-              buttonType={ButtonType.PRIMARY}
-              onClick={() => console.log('Get started clilcked')}>
-              Get Started
-            </Button>
+          <Flex
+            flexDirection="column"
+            gap={5}
+            padding="0 16px"
+            alignItems={!isMobile && 'center'}>
+            <Box maxW={!isMobile && 400}>
+              <Button
+                buttonType={ButtonType.SECONDARY}
+                buttonSize={ButtonSize.LARGE}
+                onClick={() => console.log('Sign in clilcked')}>
+                Sign In
+              </Button>
+            </Box>
+            <Box maxW={!isMobile && 400}>
+              <Button
+                buttonType={ButtonType.PRIMARY}
+                buttonSize={ButtonSize.LARGE}
+                onClick={() => console.log('Get started clilcked')}>
+                Get Started
+              </Button>
+            </Box>
           </Flex>
         </Flex>
       </Box>
