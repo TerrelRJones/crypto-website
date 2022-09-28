@@ -1,6 +1,5 @@
 import { Grid } from '@chakra-ui/react';
 import CoinGraphCard from 'components/CoinGraphCard';
-import { BREAKPOINTS } from 'const/breakpoints';
 import { useMobileResponsiveness } from 'hooks/useMobileResponsiveness';
 import { Coin, TrendingResponse } from 'types/coins';
 
