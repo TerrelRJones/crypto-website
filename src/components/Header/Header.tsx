@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HeaderLinksType, linkdata } from './mockHeaderLinkData';
 import { Box, Divider, Fade, Flex } from '@chakra-ui/react';
 import Button from 'components/Button';
-import { ButtonType } from 'components/Button/Button';
+import { ButtonSize, ButtonType } from 'components/Button/Button';
 import CustomLink from 'components/CustomLink';
 import FullLogo from 'components/FullLogo';
 import LogoMark from 'components/LogoMark';
