@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import CoinGraphGrid from 'components/CoinGraphGrid';
 import Hero from 'components/Hero';
+import PlatformInfoSection from 'components/PlatformInfoSection';
 import { useCryptoService } from 'hooks/useCryptoService';
 
 interface HomeProps {}
@@ -18,6 +19,7 @@ const Home = ({}: HomeProps) => {
         the easiest and most secure platform to buy and trade cryptocurrency.
       </Hero>
       <CoinGraphGrid data={trendingData} />
+      <PlatformInfoSection />
     </Box>
   );
 };
