@@ -48,7 +48,6 @@ const GhostDivider = () => {
 interface ConversionBarProps {
   icon?: any;
   price?: number;
-
   options?: string[];
 }
 
@@ -75,8 +74,10 @@ const ConversionBar = ({ icon, price, options }: ConversionBarProps) => {
         </Box>
 
         <Select color="white" minW={90} variant="unstyled">
-          {options?.map(option => (
-            <option value={option}>{option}</option>
+          {options?.map((option, index) => (
+            <option value={option} key={index}>
+              {option}
+            </option>
           ))}
         </Select>
       </Center>
@@ -84,7 +85,13 @@ const ConversionBar = ({ icon, price, options }: ConversionBarProps) => {
   );
 };
 
-const BuyCrypto = ({ someProp }: BuyCryptoProps) => {
+export const BuyCrypto = ({ someProp }: BuyCryptoProps) => {
+  //list of currencies
+  //list of coins
+  //converted amounts
+  //math for the reverse
+  //derrive selected coin and put dynamically
+
   return (
     <GlassBox boxProps={{ p: 10 }}>
       <Center alignItems="center" justifyContent="space-between" px={10} mb={5}>
@@ -116,5 +123,3 @@ const BuyCrypto = ({ someProp }: BuyCryptoProps) => {
     </GlassBox>
   );
 };
-
-export default BuyCrypto;

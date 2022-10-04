@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import BuyCrypto from 'components/BuyCrypto/BuyCrypto';
+import BuyCrypto from 'components/BuyCrypto';
 
 export default {
   title: 'components/BuyCrypto',
