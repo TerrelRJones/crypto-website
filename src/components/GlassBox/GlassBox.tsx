@@ -8,11 +8,11 @@ interface GlassBoxProps {
 export const GlassBox = ({ boxProps, children }: GlassBoxProps) => {
   return (
     <Box
-      background="rgba( 75, 75, 75, 0.25 )"
+      background="rgba(75, 75, 75, 0.25)"
       //background="beige"
       backdropFilter="auto"
-      boxShadow="lg"
       blur="lg"
+      boxShadow="lg"
       borderRadius="lg"
       {...boxProps}>
       {children}

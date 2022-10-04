@@ -16,7 +16,7 @@ interface ButtonProps {
   children: string;
   buttonType: ButtonType;
   buttonSize?: ButtonSize;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
