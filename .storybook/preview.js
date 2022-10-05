@@ -1,3 +1,4 @@
+import { TestProvider } from '../src/test/test-helpers';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 
 initialize({
@@ -23,4 +24,12 @@ export const parameters = {
   },
 };
 
-export const decorators = [mswDecorator];
+const withProviders = (Story, context) => {
+  return (
+    <TestProvider>
+      <Story {...context} />
+    </TestProvider>
+  );
+};
+
+export const decorators = [mswDecorator, withProviders];
