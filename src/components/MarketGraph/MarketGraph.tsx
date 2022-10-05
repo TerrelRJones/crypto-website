@@ -175,7 +175,6 @@ export const MarketGraph = ({ prices }: MarketGraphProps) => {
   }, [graph]);
 
   return (
-
     <Box maxW="100%" height="auto" display="flex">
       <Box ref={ref} flexGrow={2} />
 
