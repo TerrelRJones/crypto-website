@@ -1,5 +1,5 @@
 import { mockMarketPrices } from 'mocks/prices';
-import { rest, setupWorker } from 'msw';
+import { rest } from 'msw';
 import { EndPoints } from 'types/endpoints';
 
 export const marketHandler = [

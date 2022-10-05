@@ -1,7 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import CoinGraphCard from 'components/CoinGraphCard';
 import { loadingHandler, marketHandler } from 'test/server-handlers';
-import { TestProvider } from 'test/test-helpers';
 
 export default {
   title: 'components/CoinGraphCard',
@@ -9,9 +8,7 @@ export default {
 } as ComponentMeta<typeof CoinGraphCard>;
 
 const Template: ComponentStory<typeof CoinGraphCard> = args => (
-  <TestProvider>
-    <CoinGraphCard {...args} />
-  </TestProvider>
+  <CoinGraphCard {...args} />
 );
 
 export const MockedSuccess = Template.bind({});

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
@@ -16,6 +17,9 @@ const queryClient = new QueryClient({
 });
 
 export const TestProvider = ({ children }: TestProvidersProps) => {
+  useEffect(() => {
+    return () => window.location.reload();
+  }, []);
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
