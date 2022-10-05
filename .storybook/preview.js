@@ -24,10 +24,10 @@ export const parameters = {
   },
 };
 
-const withProviders = (Story, context) => {
+const withProviders = Story => {
   return (
     <TestProvider>
-      <Story {...context} />
+      <Story />
     </TestProvider>
   );
 };
